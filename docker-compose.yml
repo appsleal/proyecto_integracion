@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  api:
+    container_name: backend
+    restart: always
+    build: ./backend/
+    ports:
+      - "3554:3554"
+    links:
+      - mongo
+    volumes:
+      - .:/usr/src/backend
+  
+  mongo:
+    container_name: database
+    image: mongo
+    ports:  
+      - "27017:27017"
