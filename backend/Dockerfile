@@ -2,6 +2,8 @@ FROM node:19
 
 RUN mkdir -p /usr/src/backend
 
+VOLUME ["/backend"]
+
 WORKDIR /usr/src/backend
 
 COPY package*.json ./

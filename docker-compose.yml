@@ -10,7 +10,7 @@ services:
     links:
       - mongo
     volumes:
-      - .:/usr/src/backend
+      - ./:/backend
   
   mongo:
     container_name: database
