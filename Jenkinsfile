@@ -7,7 +7,7 @@ pipeline {
         stage ('build') {
             steps {
                 sh 'printenv'
-                sh 'docker-compose build'
+                sh 'docker-compose -p proyecto_integracion build'
                 echo 'Docker-compose-build Build Image Completed' 
             }
         }
@@ -21,12 +21,6 @@ pipeline {
             steps {
                 sh 'printenv'
                 sh 'docker push appsleal/proyecto_integracion:$BUILD_NUMBER'
-                echo 'Push Image Completed'
-                
-            }
-        }
-    }
-    post{
         always {  
             sh 'docker logout'           
         }      
