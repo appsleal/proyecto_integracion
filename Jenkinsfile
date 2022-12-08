@@ -20,7 +20,7 @@ pipeline {
         stage ('Publish') {
             steps {
                 sh 'printenv'
-                sh 'docker push appsleal/proyecto_integracion_api:$BUILD_NUMBER'
+                sh 'docker push appsleal/docker.io/library/proyecto_integracion_api:$BUILD_NUMBER'
             }
         }
     }
