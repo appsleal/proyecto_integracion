@@ -20,7 +20,8 @@ pipeline {
         stage ('Publish') {
             steps {
                 withDockerRegistry([credentialsId: "docker-hub", url:""]) {
-                    sh 'docker push <dockerhubusername>/<dockerhubreponame>:$BUILD_NUMBER'
+                    sh 'docker push dockerhubusername/dockerhubreponame:$BUILD_NUMBER'
+                    echo 'Push Image Completed'
                 }
                 
             }
