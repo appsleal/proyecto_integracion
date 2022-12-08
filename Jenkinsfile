@@ -12,7 +12,7 @@ pipeline {
         stage ('Publish') {
             steps {
                 withDockerRegistry([credentialsId: "docker-hub", url:""]) {
-                    sh 'docker push appsleal/integraciondemo:""$BUILD_ID"" '
+                    sh 'docker push <dockerhubusername>/<dockerhubreponame>:$BUILD_NUMBER'
                 }
                 
             }
