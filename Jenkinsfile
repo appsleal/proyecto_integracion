@@ -21,6 +21,7 @@ pipeline {
             steps {
                 sh 'printenv'
                 sh 'docker push appsleal/proyecto_integracion:$BUILD_NUMBER'
+            }
         always {  
             sh 'docker logout'           
         }      
