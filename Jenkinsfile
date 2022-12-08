@@ -8,12 +8,6 @@ pipeline {
                 echo 'Docker-compose-build Build Image Completed' 
             }
         }
-        stage('Login to Docker Hub') {         
-            steps{                            
-	            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                 
-	            echo 'Login Completed'
-            }           
-        }    
         stage ('Publish') {
             withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'HUB_USER', passwordVariable: 'HUB_TOKEN')]) {                      
                     sh '''
@@ -24,9 +18,4 @@ pipeline {
                 }
             }
     }
-    post{
-        always {  
-            sh 'docker logout'           
-        }      
-    }  
 }
