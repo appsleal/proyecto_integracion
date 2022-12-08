@@ -8,8 +8,10 @@ pipeline {
     }  
     stages {
         stage ('build') {
-            script {
-                dockerImage = docker.build imagename
+            steps{
+                script {
+                    dockerImage = docker.build imagename
+                }
             }
         }
         stage('Login to Docker Hub') {         
@@ -19,10 +21,12 @@ pipeline {
             }           
         }    
         stage ('Publish') {
-            script {
-                docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push("$BUILD_NUMBER")
-                    dockerImage.push('latest')
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')
+                    }
                 }
             }
         }
