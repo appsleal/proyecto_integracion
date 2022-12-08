@@ -7,7 +7,7 @@ pipeline {
         stage ('build') {
             steps {
                 sh 'printenv'
-                sh 'docker-compose -p proyecto_integracion build'
+                sh 'docker-compose -p build'
                 echo 'Docker-compose-build Build Image Completed' 
             }
         }
@@ -20,7 +20,7 @@ pipeline {
         stage ('Publish') {
             steps {
                 sh 'printenv'
-                sh 'docker push appsleal/docker.io/library/proyecto_integracion_api:$BUILD_NUMBER'
+                sh 'docker push appsleal/proyecto_integracion:$BUILD_NUMBER'
             }
         }
     }
