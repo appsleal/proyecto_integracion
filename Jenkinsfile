@@ -4,7 +4,8 @@ pipeline {
         stage ('build') {
             steps {
                 sh 'printenv'
-                sh 'docker build -t appsleal/integraciondemo:""$BUILD_ID"" .'
+                sh 'docker-compose build'
+                echo 'Docker-compose-build Build Image Completed' 
             }
         }
 
