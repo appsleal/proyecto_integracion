@@ -19,8 +19,9 @@ pipeline {
         }    
         stage ('Publish') {
             steps {
-                    sh 'docker push <dockerhubusername>/<dockerhubreponame>:$BUILD_NUMBER'
-                    echo 'Push Image Completed'
+                sh 'printenv'
+                sh 'docker push <DOCKERHUB_CREDENTIALS_USR>/<dockerhubreponame>:$BUILD_NUMBER'
+                echo 'Push Image Completed'
                 
             }
         }
