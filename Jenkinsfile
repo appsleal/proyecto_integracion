@@ -2,13 +2,14 @@ pipeline {
     agent any
     environment {     
         DOCKERHUB_CREDENTIALS= credentials('docker-hub')     
+        registryCredential = 'docker-hub'
+        imagename = "appsleal/pruebas"
+
     }  
     stages {
         stage ('build') {
-            steps {
-                sh 'printenv'
-                sh 'docker-compose build -t appsleal/pruebas:$BUILD_NUMBER .'
-                echo 'Docker-compose-build Build Image Completed' 
+            script {
+                dockerImage = docker.build imagename
             }
         }
         stage('Login to Docker Hub') {         
@@ -18,9 +19,11 @@ pipeline {
             }           
         }    
         stage ('Publish') {
-            steps {
-                sh 'printenv'
-                sh 'docker push appsleal/pruebas:$BUILD_NUMBER'
+            script {
+                docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push("$BUILD_NUMBER")
+                    dockerImage.push('latest')
+                }
             }
         }
     }
