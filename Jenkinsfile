@@ -23,6 +23,8 @@ pipeline {
                 sh 'docker push appsleal/proyecto_integracion:$BUILD_NUMBER'
             }
         }
+    }
+    post{
         always {  
             sh 'docker logout'           
         }      
