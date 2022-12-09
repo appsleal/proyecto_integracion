@@ -11,13 +11,6 @@ pipeline {
                 echo 'Docker-compose-build Build Image Completed' 
             }
         }
-        stage ('Run') {
-            steps {
-                sh 'printenv'
-                sh 'docker-compose up'
-                echo 'Docker-compose up Run Image Completed' 
-            }
-        }
         stage('look images') {         
             steps{                            
 	            sh 'docker images'

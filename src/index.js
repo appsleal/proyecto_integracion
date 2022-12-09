@@ -5,5 +5,5 @@ const app = express();
 
 require('./database')
 app.use(router);
-app.listen(3550);;
-console.log('Server on port 3550');
+app.listen(3554);;
+console.log('Server on port 3554');

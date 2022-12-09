@@ -2,16 +2,20 @@ version: '3'
 
 services:
   api:
-    restart: always
-    build: ./backend/
+    container_name: api
+    build: 
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3554:3554"
     links:
       - mongo
     volumes:
-      - ./:/backend
+      - "./src:/usr/src/backend/src"
+      - "/usr/src/backend/src/node_modules"
   
   mongo:
+    container_name: MongoDatabase
     image: mongo
     ports:  
       - "27017:27017"
