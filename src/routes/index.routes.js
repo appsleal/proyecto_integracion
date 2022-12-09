@@ -3,7 +3,7 @@ const router = Router();
 const User = require("../models/user.model");
 
 router.get("/", (req, res) => {
-  res.send("Hello Worldssses");
+  res.send("Hola mundo");
 });
 
 router.post("/create", async (req, res) => {
@@ -65,9 +65,55 @@ router.get("/users/:id", async (req, res) => {
         res.status(400).json({
             ok: true,
             data: null,
-            error: err,
+            error: err
           });
     });
-  });
+});
+
+router.put("/users/:id", async (req, res) => {
+    const user = {
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        numeroIdentificacion: req.body.numeroIdentificacion,
+        programa: req.body.programa,
+        modalidadPractica: req.body.modalidadPractica,
+        fechaInicio: Date(req.body.fechaInicio),
+        fechaFinalizacion: Date(req.body.fechaFinalizacion),
+    };
+    
+    User.findOneAndUpdate({
+            _id:req.params.id
+    },user).then((users) => {
+      res.json({
+        ok: true,
+        data: users,
+        error: null,
+      });
+    }).catch(err=>{
+        res.status(400).json({
+            ok: true,
+            data: null,
+            error: err
+          });
+    });
+});
+
+router.delete("/users/:id", async (req, res) => {
+    User.deleteOne({
+            _id:req.params.id
+    }).then((users) => {
+      res.json({
+        ok: true,
+        data: users,
+        error: null,
+      });
+    }).catch(err=>{
+        res.status(400).json({
+            ok: true,
+            data: null,
+            error: err
+          });
+    });
+});
 
 module.exports = router;
