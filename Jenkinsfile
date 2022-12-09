@@ -13,7 +13,8 @@ pipeline {
         }
         stage('look images') {         
             steps{                            
-	            sh 'docker images'                 
+	            sh 'docker images'
+                sh 'docker tag e44d118693ce appsleal/proyecto_integracion_api:$BUILD_NUMBER'                
 	            echo 'look complete'
             }           
         }
@@ -26,7 +27,7 @@ pipeline {
         stage ('Publish') {
             steps {
                 sh 'printenv'
-                sh 'docker push proyecto_integracion_api:$BUILD_NUMBER'
+                sh 'docker push appsleal/proyecto_integracion_api:$BUILD_NUMBER'
                 echo 'Push Image Completed'
                 
             }
