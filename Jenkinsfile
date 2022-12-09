@@ -11,7 +11,7 @@ pipeline {
                 echo 'Docker-compose-build Build Image Completed' 
             }
         }
-        stage ('build') {
+        stage ('Run') {
             steps {
                 sh 'printenv'
                 sh 'docker-compose run'
