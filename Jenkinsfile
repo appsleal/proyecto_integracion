@@ -11,6 +11,12 @@ pipeline {
                 echo 'Docker-compose-build Build Image Completed' 
             }
         }
+        stage('look images') {         
+            steps{                            
+	            sh 'docker images'                 
+	            echo 'look complete'
+            }           
+        }
         stage('Login to Docker Hub') {         
             steps{                            
 	            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                 
