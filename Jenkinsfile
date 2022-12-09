@@ -14,8 +14,8 @@ pipeline {
         stage ('Run') {
             steps {
                 sh 'printenv'
-                sh 'docker-compose run'
-                echo 'Docker-compose Run Run Image Completed' 
+                sh 'docker-compose up'
+                echo 'Docker-compose up Run Image Completed' 
             }
         }
         stage('look images') {         
